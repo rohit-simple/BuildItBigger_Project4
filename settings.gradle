@@ -1,0 +1,1 @@
+include ':app', ':jokesupplierjava', ':jokedisplayerandroid', ':backend'

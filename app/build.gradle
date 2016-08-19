@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.udacity.gradle.builditbigger"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+            multiDexEnabled true
+            testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
+        }
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+            multiDexEnabled false
+            testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support:appcompat-v7:24.0.0-beta1'
+    freeCompile 'com.google.android.gms:play-services:9.0.0'
+
+    compile project(':jokedisplayerandroid')
+    compile project(path: ':backend', configuration: 'android-endpoints')
+}
